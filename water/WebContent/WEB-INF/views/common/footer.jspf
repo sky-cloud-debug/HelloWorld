@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="footer">
+        <div class="footer-t">
+            <div class="footer-content">
+                <ul class="web col-4 clearfix">
+                    <li class="fl">政府机构网站<i class="fa fa-angle-down"></i></li>
+                    <li class="fl">科研院所网站<i class="fa fa-angle-down"></i></li>
+                    <li class="fl">常用农业网站<i class="fa fa-angle-down"></i></li>
+                    <li class="fl contacttip">山东农业大学水利土木工程学院<i class="fa fa-angle-down"></i></li>
+                </ul>
+            </div>
+        </div>
+		<div class="footer-content">
+			<ul class="web-list col-4 clearfix">
+				<li class="fl">
+					<a href="http://www.most.gov.cn">+科技部</a>
+					<a href="http://www.moa.gov.cn/">+农业部</a>
+					<a href="http://www.sdstc.gov.cn/">+山东省科技厅</a>
+					<a href="http://www.dysti.gov.cn/">+东营市科技局</a>
+					<a href="http://www.bzst.gov.cn/">+滨州市科技局</a>
+				</li>
+				<li class="fl">
+					<a href="http://www.sdau.edu.cn">+山东农业大学</a>
+					<a href="http://www.cas.cn/">+中国科学院</a>
+					<a href="http://www.caas.net.cn/">+中国农业科学院</a>
+					<a href="http://www.sdas.org/">+山东省科学院</a>
+				</li>
+				<li class="fl">
+					<a href="http://www.agri.gov.cn/">+中国农业信息网</a>
+					<a href="http://www.3w3n.com/">+农产品价格信息网</a>
+					<a href="http://www.chinaseed.net/">+中国种子信息网</a>
+					<a href="http://www.china-fertinfo.com.cn/">+中国化肥信息网</a>
+				</li>
+				<li class="fl contacttype">
+					<p><i class="fa fa-map-marker"></i>地址：山东农业大学岱宗大街61号</p>
+					<p><i class="fa fa-phone"></i>电话：0538-8249612  </p>
+					<p><i class="fa fa-fax"></i>传真: 0538-8249612</p>
+					<p><i class="fa fa-envelope"></i>E-mail：liufsh@sdau.edu.cn</p>
+				</li>
+			</ul>
+		</div>
+    </div>
+	<div class="copy">
+		<div class="footer-content">
+			<p>Copyright © 2016 山东农业大学水利土木工程学院 All Right Reserved 鲁ICP备08014187</p>
+	   </div>
+	</div>

@@ -1,0 +1,35 @@
+body{font-size:12px;font-family:"微软雅黑";}
+.clearfix:after{content:" ";display:block;clear:both;}
+/*loadingBar start*/		
+#loadingBar{height:50px;width:100%;position:fixed;bottom:0;left:0;background:url('../../images/guangImg/loadingBar/loading2.gif') no-repeat center;background-color:#494994;display:none;}
+/*end loadingBar*/
+/*loadingBox start*/
+#loadingBox{padding:6px 8px;background:#333;color:#fff;box-shadow:1 1 4px #ccc;position:fixed;left:550px;top:260px;border-radius:4px;z-index:99;display:none;}
+#loadingBox span{font-size:18px;font-family:"微软雅黑";color:"#fff";line-height:40px;padding-left:10px;font-weight:600;opacity:0.8;filter:alpha(opacity=80);}
+/*end loadingBox*/
+/*guangAlert start*/
+#guangAlert{width:340px;position:fixed;background:#eee;box-shadow:0 0 10px #333;z-index:99;display:none;}
+#guangAlert .a_title{height:40px;background:#000;color:#fff;line-height:40px;font-size:14px;padding-left:10px;}
+#guangAlert .a_title .a_close{float:right;margin-right:10px;background:#EA3939;color:#fff;text-decoration:none;display:block;width:20px;height:20px;text-align:center;margin-top:10px;font-size:10px;line-height:20px;border-radius:20px;box-shadow:0 0 3px #333;}
+#guangAlert .a_title .a_close:hover{background:#fA3939;box-shadow:0 0 5px #333;}
+#guangAlert .a_content{padding:10px;}
+#guangAlert .a_content p{font-size:16px;line-height:20px;min-height:50px;}
+#guangAlert .a_content button{margin-top:10px;padding:5px 16px;cursor:pointer;float:right;margin-right:10px;background:#4A4ED4;color:#fff;border:0;font-size:14px;box-shadow:0 0 3px #333;}
+#guangAlert .a_content button:hover{background:#4A4Ee4;box-shadow:0 0 5px #333;}
+
+.guang_mask{position:fixed;background:#333;opacity:0.8;filter:alpha(opacity=80);width:100%;height:100%;left:0;top:0;z-index:98;}
+/*end guangAlert*/
+/*uploadImg start*/
+#file{display:none;}
+/*end uploadImg*/
+/*pagination start*/
+.pagination{font-size:12px;margin:0 0 0 30%;}
+.pagination a{text-decoration:none;border:solid 1px #999;color:#999;}
+.pagination a,.pagination span{display:block;float:left;padding:0.3em 0.5em;margin-right:5px;margin-bottom:5px;min-width:1em;text-align:center;}
+.pagination .current{background:#999;color:#fff;border:solid 1px #999;}
+.pagination .current.prev,.pagination .current.next{color:#999;border-color:#999;background:#fff;}
+/*end pagination*/
+#toTop{width:50px;height:50px;font-weight:500;background:#333;opacity:0.9;filter:alpha(opacity=90);position:fixed;bottom:50px;right:50px;border-radius:6px;cursor:pointer;display:none;text-align:center;}
+#toTop:hover{box-shadow:0 0 10px #eee;}
+#toTop span{color:#eee;font-size:30px;line-height:50px;}
+ 

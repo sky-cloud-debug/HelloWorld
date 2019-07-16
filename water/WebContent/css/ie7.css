@@ -1,0 +1,12 @@
+.main .left, .main .middle{width:46.8%;margin-bottom:20px;}
+.main-content{padding-bottom:20px;}
+a.more,span.time,ul.normal-list li span{position:absolute;top:-2px;right:0;}
+ul.web li.contacttip,ul.web-list li.contacttype{width:30.5%;}
+ul.web li i{position:absolute;top:0;right:0;}
+.widget .top .select-group{top:0;}
+.select-group input{*border:none;height:25px;position:relative;top:-5px;}
+.select-group span{position:relative;top:-4px;}
+.his-main-c .his-l{width:45%;}
+.sys .box{overflow:hidden;}
+ul.sys-list li{width:19.99%;}
+ul.slider-public li{width:18.1%;}

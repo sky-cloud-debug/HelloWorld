@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.pagination.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/highcharts/highcharts.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/highcharts/highcharts-3d.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/highcharts/highcharts-more.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/highcharts/modules/exporting.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/guangJs/guang-utils.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.flexslider.js"></script><!-- banner slider -->
+<script src="${pageContext.request.contextPath}/js/base.js"></script><!-- callback -->
+<script src="${pageContext.request.contextPath}/js/My97DatePicker/WdatePicker.js"></script><!-- callback -->
+<script>
+     $(function(){
+		 guangToTop.init();
+     });
+</script>
+

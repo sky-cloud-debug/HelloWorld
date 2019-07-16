@@ -1,0 +1,150 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="/js/jquery.cookie.js"></script>
+
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	
+	
+	//读取cookie
+	function getCookie(name) 
+	{ 
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)"); 
+	    if(arr=document.cookie.match(reg)) 
+		return unescape(arr[2]); 
+        else
+		return null; 
+	} 
+	function submitSoil(){
+		if(getCookie("byd")!=''){
+			window.location="${pageContext.request.contextPath}/region/detail/soilList2?plotId="+getCookie("byd");	
+		}
+		else{
+			window.location="${pageContext.request.contextPath}/region/detail/soilList?plotIdName="+getCookie("plotName");			
+		}
+	}
+	function submitWeather(){
+		if(getCookie("byd")!=''){
+			window.location="${pageContext.request.contextPath}/region/detail/weatherList2?plotId="+getCookie("byd");	
+		}
+		else{
+			window.location="${pageContext.request.contextPath}/region/detail/weatherList?plotId="+getCookie("Ids");			
+		}
+	}
+	function submitSoilStatistic(){
+		if(getCookie("byd")!=''){
+			window.location="${pageContext.request.contextPath}/region/detail/soilStatistic2?plotId="+getCookie("byd");	
+		}
+		else{
+			window.location="${pageContext.request.contextPath}/region/detail/soilStatistic?plotId="+getCookie("Ids");			
+		}
+		
+	}
+	function submitWeatherStatistic(){
+		if(getCookie("byd")!=''){
+			window.location="${pageContext.request.contextPath}/region/detail/weatherStatistic2?plotId="+getCookie("byd");	
+		}
+		else{
+			window.location="${pageContext.request.contextPath}/region/detail/weatherStatistic?plotId="+getCookie("Ids");			
+		}
+		
+	}
+</script>
+<style>
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1464999621_4823465.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1464999621_4823465.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1464999621_4823465.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1464999621_4823465.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1464999621_4823465.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+                                     
+                    
+                    
+                    
+.iconfont{font-family:"iconfont";font-size:18px;font-style:normal;}
+                    
+	#menu li ul li a{background:#f9f9f9;border:1px dashed #ccc;}
+	#menu li ul li a:hover{color:green;}
+	#menu > li{box-shadow:0 0 1px #eee;}
+	.menu-icon{padding-right:6px;color:darkgreen;}
+	
+	table tr:hover{background:#eee;}
+	table tr:nth-child(1){background:#cafbce;}
+	table tr td{text-align:center;min-width:58px;}
+	
+	input,select{height:30px;line-height:30px;padding:0 10px;}
+	.btn{padding:6px 42px;}
+</style>
+
+				<h2 class="title">大数据系统</h2>
+				<ul  class="cage-name" id="menu"><%-- ${regionId} --%>
+					<li ${Menu=='数据采集'?'class=""':''} style="border-top:1px solid #fff;"><a href="#" style="font-size: 15px"><i class="iconfont menu-icon" >&#xe604;</i>数据采集</a>
+						<ul>
+							<li><a  style="font-size: 14px" class="lv2" href="javascript:void(0);" onclick="submitSoil();">土壤数据采集</a></li>
+							<li><a  style="font-size: 14px"class="lv2" href="javascript:void(0);" onclick="submitWeather();">气象数据采集</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/detail/login3?status=addCrop">作物数据录入</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/water/device">管网管理</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/picture/requestPicture">实时图片采集</a></li>
+						</ul>
+					</li>
+					<li  ${Menu=='挖掘分析'?'class=""':''}><a href="#" style="font-size: 15px"><i class="iconfont menu-icon" >&#xe60a;</i>数据挖掘</a>
+						<ul>
+							<li><a style="font-size: 14px"class="lv2" href="javascript:void(0);" onclick="submitSoilStatistic();">土壤数据分析</a></li>
+							<li><a style="font-size: 14px"class="lv2"onclick="submitWeatherStatistic();" href="javascript:void(0);">气象数据分析</a></li>
+						</ul>
+					</li>
+					<li ${Menu=='监控预警'?'class=""':''}><a href="#" style="font-size: 15px"><i class="iconfont menu-icon">&#xe600;</i>监控预警</a>
+						<ul>
+							<li><a style="font-size: 14px"class="lv2" href=" ${pageContext.request.contextPath}/monitor.jsp">干热风预警</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/monitor1.jsp">干旱预警</a></li>
+						</ul>
+					</li>
+					<li ${Menu=='决策服务'?'class=""':''}><a href="#" style="font-size: 15px"><i class="iconfont menu-icon">&#xe60d;</i>决策服务</a>
+						
+						
+						<ul>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/water/login?status=manualControl">手动灌溉控制</a>
+						    <li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/water/login2?status=autoControl">自动灌溉控制</a>
+							
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/water/login3?status=autoFertilizer">自动施肥控制</a>
+							
+							
+							<li><a style="font-size: 14px ;"class="lv2" href="${pageContext.request.contextPath}/record/waterRecord?regionId=1">灌溉历史记录</a></li>
+							<li><a style="font-size: 14px ;"class="lv2" href="${pageContext.request.contextPath}/record/messageRecord?regionId=1">短信历史记录</a></li>
+							</li>
+							
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/forecast/realForecast">基于实测气象数据的灌水量预测</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/forecast/forecast">基于天气预报数据的作物灌水量和灌溉日期预报</a></li>
+						</ul>
+					</li>
+					<li ${Menu=='效益评估'?'class=""':''}><a href="${pageContext.request.contextPath}/assess.html" style="font-size: 15px"><i class="iconfont menu-icon">&#xe60e;</i>效益评估</a></li>
+				     <li ${Menu=='区域管理'?'class=""':''}><a href="#" style="font-size: 15px"><i class="iconfont menu-icon" >&#xe60c;</i>区域管理</a>
+						<ul>
+						    <li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login6?status=selectCity">查看市</a></li>
+						    <li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login2?status=selectRegion">查看区域</a></li>
+						    <li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login7?status=selectCounty">查看乡镇</a></li>
+						    <li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login8?status=selectPlot">查看站点</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login1?status=addCity">添加市</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login3?status=addRegion">添加区域</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login4?status=addCounty">添加乡镇</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/login5?status=addPlot">添加站点</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/area/login?status=addField">添加田地</a></li>
+							<li><a style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/region/detail/login?status=collectCrop">作物数据采集</a></li>
+						</ul>
+					</li>
+					<li ${Menu=='新闻管理'?'class=""':''} style="border-top:1px solid #fff;"><a href="#" style="font-size: 15px"><i class="iconfont menu-icon" >&#xe604;</i>数据采集</a>
+						<ul>
+							<li><a  style="font-size: 14px"class="lv2" href="${pageContext.request.contextPath}/news/newsList?status=newsList">新闻列表</a></li>
+							<li><a  style="font-size: 14px" class="lv2" href="${pageContext.request.contextPath}/news/addNews?status=addNews">发布新闻</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="cage-name-nav">
+					<li><a href="${pageContext.request.contextPath}/project.html"><i class="fa fa-desktop"></i>项目介绍</a></li>
+                    <li><a href="${pageContext.request.contextPath}/system.jsp"><i class="fa fa-bar-chart-o"></i>大数据系统</a></li>
+                    <li><a href="${pageContext.request.contextPath}/news/more"><i class="fa fa-newspaper-o"></i>平台咨讯</a></li>
+                    <li><a href="${pageContext.request.contextPath}/aboutus.html"><i class="fa fa-bookmark"></i>关于我们</a></li>
+				</ul>

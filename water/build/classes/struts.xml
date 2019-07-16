@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 基础模块 -->
+	<package name="common" extends="json-default">
+		<interceptors>
+			<interceptor name="autentication"
+				class="com.water.web.interceptor.AuthenticationInterceptor"></interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<!-- <interceptor-ref name="autentication"></interceptor-ref> -->
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="toIndex" type="redirect">/index.jsp</result>
+			<result name="toLogin" type="redirect">/user/loginui</result>
+			<result name="input">/index.jsp</result>
+			<result name="json" type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</global-results>
+	</package>
+
+
+
+	<!-- 新闻管理 -->
+	<package name="news" namespace="/news" extends="common">
+		<action name="list" class="newsAction" method="list">
+			<result>/WEB-INF/views/news/list.jsp</result>
+		</action>
+		<action name="newsList" class="newsAction" method="newsList">
+			<result name="success">/WEB-INF/views/news/newsList.jsp</result>
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+		</action>
+		<action name="ajaxNewsList" class="newsAction" method="ajaxNewsList">
+			<result>/WEB-INF/views/template/news/newsList.jsp</result>
+		</action>
+		<action name="addNews" class="newsAction" method="addNews">
+			<result name="success">/WEB-INF/views/news/saveNews.jsp</result>
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+		</action>
+		<action name="editNews" class="newsAction" method="editNews">
+			<result name="success">/WEB-INF/views/news/saveNews.jsp</result>
+		</action>
+		<action name="ajaxListById" class="newsAction" method="ajaxListById">
+			<result name="success">/WEB-INF/views/news/newslistview.jsp</result>
+		</action>
+		<action name="show" class="newsAction" method="show">
+			<result name="success">/WEB-INF/views/template/news/showNews.jsp
+			</result>
+		</action>
+		<action name="ajaxListByPageAndType" class="newsAction"
+			method="ajaxListByPageAndType">
+		</action>
+		<action name="delete" class="newsAction" method="delete"></action>
+		<action name="update" class="newsAction" method="update"></action>
+		<action name="save" class="newsAction" method="save"></action>
+		<action name="detail" class="newsAction" method="detail">
+			<result>/WEB-INF/views/news/detail.jsp</result>
+		</action>
+		<action name="more" class="newsAction" method="more">
+			<result>/WEB-INF/views/news/more.jsp</result>
+		</action>
+		<action name="*" class="newsAction" method="{1}"></action>
+	</package>
+
+	<!-- 区域管理 -->
+	<package name="region" namespace="/region" extends="common">
+		<!-- <action name="selectRegion" class="regionAction" method="select"> 
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/regionUpdate.jsp</result> 
+			</action> -->
+		<action name="login2" class="regionAction" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">list</result>
+		</action>
+		<action name="city" class="regionAction" method="city">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/cityAdd.jsp</result>
+		</action>
+		<action name="deleteCity" class="cityAction" method="deleteCity">
+		</action>
+		<action name="deleteCounty" class="countyAction" method="deleteCounty">
+		</action>
+		<action name="deletePlot" class="plotAction" method="deletePlot">
+		</action>
+		<action name="login1" class="regionAction" method="login">
+		    <result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/cityAdd.jsp</result>
+		</action>
+		<action name="login4" class="regionAction" method="login">
+		    <result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/countyAdd.jsp</result>
+		</action>
+		<action name="login5" class="regionAction" method="login">
+		    <result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/plotAdd.jsp</result>
+		</action>
+		<action name="login6" class="regionAction" method="login">
+		    <result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">cityList</result>
+		</action>
+		<action name="login7" class="regionAction" method="login">
+		    <result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">countyList</result>
+		</action>
+		<action name="login8" class="regionAction" method="login">
+		    <result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">plotList</result>
+		</action>
+		<action name="county" class="countyAction" method="county">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/countyAdd.jsp</result>
+		</action>
+		
+		<action name="plot" class="regionAction" method="plot">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/plotAdd.jsp</result>
+		</action>
+		<action name="login3" class="regionAction" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success">/WEB-INF/views/region/detail/regionAdd.jsp
+			</result>
+		</action>
+		<action name="cityList" class="cityAction" method="cityList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/cityList.jsp
+			</result>
+		</action>
+		<action name="plotList" class="plotAction" method="plotList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/plotList.jsp
+			</result>
+		</action>
+		<action name="countyList" class="countyAction" method="countyList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/countyList.jsp
+			</result>
+		</action>
+		<action name="cityList" class="cityAction" method="cityList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/cityList.jsp
+			</result>
+		</action>
+		<action name="list" class="regionAction" method="list">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/regionList.jsp
+			</result>
+		</action>
+		<action name="selectRegion" class="regionAction" method="select">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/regionUpdate.jsp
+			</result>
+		</action>
+		<action name="deleteRegion" class="regionAction" method="delete">
+		</action>
+		<action name="listByPage" class="regionAction" method="listByPage">
+			<result name="json" type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		<action name="editui" class="regionAction" method="editui">
+			<result name="editui" type="dispatcher">/WEB-INF/views/region/regionAdd.jsp
+			</result>
+		</action>
+		<action name="regionUpdate2" class="regionAction" method="regionUpdate2">
+		</action>
+		<action name="addui" class="regionAction" method="addui">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/regionAdd.jsp
+			</result>
+		</action>
+		<action name="regionAdd" class="regionAction" method="regionAdd"></action>
+	</package>
+
+
+	<!-- 选择区域详情模块 -->
+	<package name="regionSelect" namespace="/region/selectRegion"
+		extends="json-default">
+		
+		<action name="selectRegion" class="regionSelectAction" method="selectRegion">
+			<result name="success" type="json"><param name="includeProperties">regions.*</param>
+			</result>
+		</action>
+		<action name="selectOnePlot" class="plotAction" method="selectOnePlot">
+			<result name="success" type="json"><param name="includeProperties">plots.*</param>
+			</result>
+		</action>
+		<action name="select17" class="cityAction" method="select17">
+			<result name="success" type="json"><param name="includeProperties">cities.*</param>
+			</result>
+		</action>
+		<action name="selectRegions" class="regionDetailAction" method="selectRegions">
+			<result name="success" type="json"><param name="includeProperties">regions.*</param>
+			</result>
+		</action>
+		<action name="cityAdd" class="cityAction" method="cityAdd">
+		</action>
+		<action name="countyAdd" class="countyAction" method="countyAdd">
+		</action>
+		<action name="plotAdd" class="plotAction" method="plotAdd">
+		</action>
+		<action name="selectCounty" class="countyAction" method="selectCounty">
+			<result name="success" type="json"><param name="includeProperties">countys.*</param>
+			</result>
+		</action>
+		<action name="selectPlot" class="plotAction" method="selectPlot">
+			<result name="success" type="json"><param name="includeProperties">plots.*</param>
+			</result>
+		</action>
+	</package>
+
+
+	<!-- 区域详情模块 -->
+	<package name="regionDetail" namespace="/region/detail"
+		extends="common">
+		<action name="updateCrop" class="regionDetailAction" method="updateCrop">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/cropUpdate.jsp
+			</result>
+		</action>
+		<action name="getPicture" class="regionDetailAction" method="getPicture">
+			<result name="success">/WEB-INF/views/record/collectpicture.jsp</result>
+		</action>
+		<action name="show" class="regionDetailAction" method="show">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/areaList.jsp
+			</result>
+		</action>
+		<action name="areaList" class="regionDetailAction" method="areaList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/areaList.jsp
+			</result>
+		</action>
+		<action name="cropUpload" class="regionDetailAction" method="cropUpload">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/cropAdd.jsp
+			</result>
+		</action>
+		<action name="login3" class="regionDetailAction" method="login3">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success">/WEB-INF/views/region/detail/cropAdd.jsp</result>
+		</action>
+		<action name="login" class="regionDetailAction" method="login3">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">areaList</result>
+		</action>
+		<action name="cropUpload2" class="regionDetailAction" method="cropUpload2">
+		</action>
+		<action name="soilList" class="regionDetailAction" method="soilList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/soilList.jsp
+			</result>
+		</action>
+		<action name="soilList2" class="regionDetailAction" method="soilList2">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/soilList2.jsp</result>
+		</action>
+		
+		<action name="soilListPre" class="regionDetailAction" method="soilListPre">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/soilList.jsp
+			</result>
+		</action>
+		<action name="weatherList" class="regionDetailAction" method="weatherList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/weatherList.jsp
+			</result>
+		</action>
+		<action name="weatherList2" class="regionDetailAction" method="weatherList2">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/weatherList2.jsp
+			</result>
+		</action>
+		<action name="cropList" class="regionDetailAction" method="cropList">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/cropList.jsp
+			</result>
+		</action>
+		<action name="soilStatistic" class="regionDetailAction" method="soilStatistic">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/soilStatistic.jsp
+			</result>
+		</action>
+		<action name="soilStatistic2" class="regionDetailAction" method="soilStatistic2">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/soilStatistic2.jsp
+			</result>
+		</action>
+		<action name="weatherStatistic" class="regionDetailAction"
+			method="weatherStatistic">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/weatherStatistic.jsp
+			</result>
+		</action>
+		<action name="weatherStatistic2" class="regionDetailAction"
+			method="weatherStatistic2">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/weatherStatistic2.jsp
+			</result>
+		</action>
+		<action name="cropStatistic" class="regionDetailAction" method="cropStatistic">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/cropStatistic.jsp
+			</result>
+		</action>
+		<action name="weatherStatisticData" class="regionDetailAction"
+			method="weatherStatisticData">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/weatherStatistic.jsp
+			</result>
+		</action>
+		<action name="weatherStatisticData2" class="regionDetailAction"
+			method="weatherStatisticData2">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/weatherStatistic2.jsp
+			</result>
+		</action>
+		<action name="soilStatisticData" class="regionDetailAction"
+			method="soilStatisticData">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/soilStatistic.jsp
+			</result>
+		</action>
+		<action name="soilStatisticData2" class="regionDetailAction"
+			method="soilStatisticData2">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/detail/statistic/soilStatistic2.jsp
+			</result>
+		</action>
+		<action name="areaListByPage" class="regionDetailAction"
+			method="areaListByPage">
+			<result>/WEB-INF/views/template/region/areaList.jsp</result>
+		</action>
+		<action name="weatherListByPage" class="regionDetailAction"
+			method="weatherListByPage">
+			<result>/WEB-INF/views/template/region/weatherList.jsp</result>
+		</action>
+		<action name="weatherList2ByPage" class="regionDetailAction"
+			method="weatherList2ByPage">
+			<result>/WEB-INF/views/template/region/weatherList2.jsp</result>
+		</action>
+		<action name="soilListByPage" class="regionDetailAction"
+			method="soilListByPage">
+			<result>/WEB-INF/views/template/region/soilList.jsp</result>
+		</action>
+		
+		<action name="soilList2ByPage" class="regionDetailAction"
+			method="soilList2ByPage">
+			<result>/WEB-INF/views/template/region/soilList2.jsp</result>
+		</action>
+		
+		<action name="cropListByPage" class="regionDetailAction"
+			method="cropListByPage">
+			<result>/WEB-INF/views/template/region/cropList.jsp</result>
+		</action>
+	</package>
+
+	<!-- 图片管理 -->
+	<package name="img" extends="common" namespace="/picture">
+		<action name="requestPicture" class="pictureAction" method="requestPicture">
+			<result name="success">/WEB-INF/views/region/detail/statistic/pictureStatistic.jsp
+			</result>
+		</action>
+		<action name="getPicture" class="pictureAction" method="getPicture">
+		</action>
+
+	</package>
+
+	<!-- excel导出 -->
+	<package name="exp" extends="common" namespace="/">
+		<action name="ExportExportSoil" class="export" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">Export_exportSoil</result>
+		</action>
+		<action name="ExportExportForecastWeather" class="export" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">Export_exportForecastWeather</result>
+		</action>
+		
+		<action name="ExportExportWeather" class="export" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success" type="chain">Export_exportWeather</result>
+		</action>
+		<action name="Export_exportSoil" class="export" method="exportSoil">
+			<result name="exportSoil"></result>
+		</action>
+		<action name="Export_exportWeather" class="export" method="exportWeather">
+			<result name="exportWeather"></result>
+		</action>
+		<action name="Export_exportForecastWeather" class="export" method="exportForecastWeather">
+			<result name="exportForecastWeather"></result>
+		</action>
+	</package>
+
+	<!-- 天气预报模块 -->
+	<package name="forecast" namespace="/forecast" extends="json-default">
+		<action name="fforecast" class="regionAction" method="queryForecast">
+			<result name="forecast_list" type="json">
+				<param name="includeProperties">forecast_list.*,msg1,lower</param>
+			</result>
+		</action>
+		<action name="real_forecast" class="regionAction" method="queryRealForecast">
+			<!-- <result type="dispatcher">/real_control.jsp</result> -->
+			<result name="msg" type="json">
+				<param name="includeProperties">msg,foreShow.*</param>
+			</result>
+		</action>
+		<action name="realForecast" class="regionAction" method="realForecast">
+			<result name="success" type="dispatcher">/WEB-INF/views/water/real_control.jsp
+			</result>
+		</action>
+		<action name="forecast" class="regionAction" method="forecast">
+			<result name="success" type="dispatcher">/WEB-INF/views/water/control.jsp
+			</result>
+		</action>
+		
+		
+		<action name="saveforecast" class="weatherServiceAction" method="saveWeatherForecast">
+			<!-- <result name="success" type="dispatcher">/WEB-INF/views/water/control.jsp
+			</result> -->
+		</action>
+		
+		
+	</package>
+
+	<!-- 田地模块 -->
+	<package name="area" namespace="/area" extends="common">
+
+		<action name="login" class="areaAction" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success">/WEB-INF/views/region/areaAdd.jsp</result>
+		</action>
+
+
+		<action name="addArea" class="areaAction" method="addArea">
+		</action>
+		<action name="addui" class="areaAction" method="addui">
+			<result>/WEB-INF/views/region/areaAdd.jsp</result>
+		</action>
+		<action name="updateArea" class="areaAction" method="updateArea">
+			<result name="success" type="dispatcher">/WEB-INF/views/region/areaUpdate.jsp
+			</result>
+		</action>
+		<action name="updateArea2" class="areaAction" method="updateArea2">
+		</action>
+		<action name="deleteArea" class="areaAction" method="deleteArea">
+		</action>
+		<action name="*" class="areaAction" method="{1}"></action>
+	</package>
+
+	<!-- 灌水控制模块 -->
+	<package name="water" namespace="/water" extends="common">
+		<action name="manual" class="waterAction" method="manualWater">
+			<result>/WEB-INF/views/water/manual_water.jsp</result>
+		</action>
+		<action name="login2" class="waterAction" method="login2">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success">/WEB-INF/views/water/auto_water.jsp</result>
+		</action>
+		<action name="water" class="waterAction" method="water">
+			<result>/WEB-INF/views/water/auto_water.jsp</result>
+		</action>
+		<action name="login1" class="userAction" method="login">
+		</action>
+		<action name="login" class="waterAction" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success">/WEB-INF/views/water/manual_water.jsp</result>
+		</action>
+
+		<action name="login3" class="waterAction" method="login">
+			<result name="fail">/WEB-INF/views/water/login.jsp</result>
+			<result name="success">/WEB-INF/views/water/auto_fertilizer.jsp</result>
+		</action>
+
+		<action name="wat" class="waterAction" method="confirmm">
+		</action>
+		<action name="confirm" class="waterAction" method="confirm">
+			<result>/WEB-INF/views/water/water.jsp</result>
+		</action>
+		<action name="device" class="waterAction" method="device">
+			<result>/WEB-INF/views/water/device.jsp</result>
+		</action>
+	</package>
+
+	<!-- 记录管理 -->
+	<package name="record" namespace="/record" extends="common">
+		<action name="waterRecord" class="recordAction" method="waterRecord">
+			<result>/WEB-INF/views/record/waterRecord.jsp</result>
+		</action>
+		<action name="messageRecord" class="recordAction" method="messageRecord">
+			<result>/WEB-INF/views/record/messageRecord.jsp</result>
+		</action>
+	</package>
+
+	<!-- 用户管理 -->
+	<package name="user" namespace="/user" extends="common">
+		<action name="loginui" class="userAction" method="loginui">
+			<result name="success" type="dispatcher">/WEB-INF/views/user/login.jsp
+			</result>
+		</action>
+		<action name="logout" class="userAction" method="logout">
+		</action>
+		<action name="updatePasswordUI" class="userAction" method="updatePasswordUI">
+			<result name="success" type="dispatcher">/WEB-INF/views/user/updatePassword.jsp
+			</result>
+		</action>
+		<action name="updateui" class="userAction" method="updateui">
+			<result name="success" type="dispatcher">/WEB-INF/views/user/update.jsp
+			</result>
+		</action>
+		<action name="update" class="userAction" method="update">
+		</action>
+		<action name="*" class="userAction" method="{1}">
+		</action>
+	</package>
+</struts>
